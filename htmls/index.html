@@ -310,6 +310,8 @@ pre.tree { background: var(--accent-soft); border-radius: 12px; padding: 0.8rem 
 .demo-card { display: grid; grid-template-columns: auto 1fr; gap: 1.2rem; align-items: center; background: var(--mustard-soft); border-color: var(--mustard-soft); }
 .demo-card .tag { display: inline-block; font-size: 0.72rem; font-weight: 800; color: var(--sage); background: white; border-radius: 999px; padding: 0.1rem 0.55rem; }
 .demo-qr { background: white; padding: 0.6rem; border-radius: 14px; line-height: 0; }
+.demo-pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.demo-pair .demo-card { margin: 0; }
 @media (max-width: 600px) { .demo-card { grid-template-columns: 1fr; text-align: center; } .demo-qr { justify-self: center; } }
 
 /* 구글 설문지 자동 생성 */
@@ -465,6 +467,7 @@ pre.tree { background: var(--accent-soft); border-radius: 12px; padding: 0.8rem 
         </div>
 
         <div class="section-head"><span></span>🎯 완성 예시 먼저 보기</div>
+        <div class="demo-pair">
         <div class="card demo-card">
             <div class="demo-qr" id="demoQR"></div>
             <div>
@@ -473,6 +476,16 @@ pre.tree { background: var(--accent-soft); border-radius: 12px; padding: 0.8rem 
                 <p class="muted-sm" style="margin:0 0 0.8rem">교훈·교목·교화·연혁으로 만든 10문항 퀴즈예요. 휴대폰 카메라로 QR을 찍어 직접 풀어 보세요. 오늘 이런 웹페이지를 만들어 갑니다!</p>
                 <a class="btn btn-main" href="../examples/jeil-quiz.html" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">▶ 예시 퀴즈 열어 보기</a>
             </div>
+        </div>
+        <div class="card demo-card">
+            <div class="demo-qr" id="demoQR2"></div>
+            <div>
+                <span class="tag">퀴즈 게임 예시</span>
+                <h3 style="margin:0.35rem 0 0.3rem">🤖 아주 쉬운 인공지능 기초 퀴즈</h3>
+                <p class="muted-sm" style="margin:0 0 0.8rem">AI의 뜻·프롬프트·환각·바른 사용 태도로 만든 10문항 퀴즈예요. 같은 틀에 문제만 바꿨어요!</p>
+                <a class="btn btn-main" href="../examples/ai-quiz.html" target="_blank" rel="noopener" style="text-decoration:none;display:inline-block">▶ 예시 퀴즈 열어 보기</a>
+            </div>
+        </div>
         </div>
 
         <div class="section-head"><span></span>어려운 말, 쉽게 보기</div>
@@ -1768,6 +1781,8 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape' && !document.
     const box = document.getElementById('demoQR');
     if (!box || !window.QRCode) return;
     new QRCode(box, { text: new URL('../examples/jeil-quiz.html', location.href).href, width: 132, height: 132, correctLevel: QRCode.CorrectLevel.M });
+    const box2 = document.getElementById('demoQR2');
+    if (box2) new QRCode(box2, { text: new URL('../examples/ai-quiz.html', location.href).href, width: 132, height: 132, correctLevel: QRCode.CorrectLevel.M });
 })();
 
 try { const t = localStorage.getItem('lfTab'); if (t && document.getElementById(t)) { document.querySelectorAll('.tab').forEach(x => x.classList.toggle('active', x.dataset.t === t)); document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === t)); revealTab(); } } catch (e) {}
